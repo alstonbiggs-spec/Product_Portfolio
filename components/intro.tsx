@@ -14,7 +14,7 @@ export function Intro({ progress }: { progress: number }) {
       style={{ opacity, transform: `translateY(${y}vh)`, willChange: "opacity, transform" }}
     >
       <h1 className="font-serif text-[22vw] leading-none text-foreground md:text-[15rem]">
-        Projects
+        Products
       </h1>
       <div
         className="mt-6 flex flex-col items-center gap-2"
