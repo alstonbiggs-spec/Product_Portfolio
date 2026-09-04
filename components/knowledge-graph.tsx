@@ -257,4 +257,4 @@ export function KnowledgeGraph({ progress }: { progress: number }) {
   )
 }
 
-const QUERY = "Quiz me over concepts for my test on Monday?"
+const QUERY = "Quiz me over concepts for my test on Monday"
