@@ -33,7 +33,7 @@ const TECH = [
 const SECTIONS = [
   {
     tag: "The Problem",
-    title: ["Data is", "fragmented", "everywhere."],
+    title: ["Data is", "fragmented."],
     body: "Meeting recordings are stored in Granola. Conversational history is split across Claude and ChatGPT. Reference material is stored locally, unindexed. No system links these sources, so retrieval depends entirely on memory.",
   },
   {
