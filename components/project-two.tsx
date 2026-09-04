@@ -20,21 +20,31 @@ import { KnowledgeGraph } from "./knowledge-graph"
  * scene on the left, never overlapping the graph on the right.
  */
 
+const TECH = [
+  { name: "Neo4j", slug: "neo4j" },
+  { name: "Voyage AI", slug: null },
+  { name: "Claude API", slug: "claude" },
+  { name: "MCP", slug: "model-context-protocol", variant: "light" },
+  { name: "Granola", slug: "granola" },
+  { name: "Notion", slug: "notion" },
+  { name: "Python", slug: "python" },
+]
+
 const SECTIONS = [
   {
     tag: "The Problem",
-    title: ["Notes go in.", "Nothing", "comes back."],
-    body: "Ideas scatter across apps, docs, and highlights. Folders and keyword search miss the connection you actually remember — the meaning, not the exact words.",
+    title: ["Data is", "fragmented."],
+    body: "Meeting recordings are stored in Granola. Conversational history is split across Claude and ChatGPT. Reference material is stored locally, unindexed. No system links these sources, so retrieval depends entirely on memory.",
   },
   {
     tag: "The Solution",
-    title: ["A brain that", "remembers", "for you."],
-    body: "Every note becomes a node in a living knowledge graph. Ask a question in plain language and related thoughts surface — even when they share no words.",
+    title: ["A local", "knowledge graph,", "queried through Claude."],
+    body: "Meeting recordings, conversational history, and files are ingested into a local graph database, indexed by person, company, and topic. Action items are extracted automatically from meetings uploaded to Notion. A recruiting CRM maintains a structured record of each contact by company, including discussion history and outstanding follow-ups. The system runs as a local server and is queried directly through the Claude application.",
   },
   {
     tag: "The Tech",
-    title: ["A graph that", "thinks in", "vectors."],
-    body: "A Neo4j knowledge graph with vector embeddings on every node, blending semantic (meaning) search with classic keyword search to retrieve what matters.",
+    title: ["Built on:"],
+    body: "Neo4j (local) · Voyage AI (embeddings) · Claude API · MCP · Granola · Notion · Python",
   },
 ]
 
@@ -131,6 +141,10 @@ export function ProjectTwo() {
                 const span = b - a
                 const y = interp(progress, [a, a + span * 0.28, b - span * 0.28, b], [280, 0, 0, -280])
                 const opacity = interp(progress, [a, a + span * 0.2, b - span * 0.26, b], [0, 1, 1, 0])
+                const isTech = s.tag === "The Tech"
+                const popStart = a + span * 0.26
+                const popWindow = span * 0.16
+                const perIcon = popWindow / TECH.length
                 return (
                   <div
                     key={s.tag}
@@ -141,8 +155,9 @@ export function ProjectTwo() {
                       willChange: "opacity, transform",
                     }}
                   >
-                    <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">
-                      Project 02 — {s.tag}
+                    <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">Product 2</p>
+                    <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground/70">
+                      {s.tag}
                     </p>
                     <div className="font-serif text-5xl leading-[0.95] text-foreground md:text-6xl">
                       {s.title.map((line, j) => (
@@ -154,6 +169,41 @@ export function ProjectTwo() {
                     <p className="mx-auto mt-6 max-w-sm font-sans text-sm leading-relaxed text-muted-foreground md:mx-0">
                       {s.body}
                     </p>
+
+                    {isTech && (
+                      <div className="mx-auto mt-6 grid max-w-sm grid-cols-4 gap-3 md:mx-0 md:grid-cols-4">
+                        {TECH.map((t, j) => {
+                          const start = popStart + j * perIcon
+                          const reveal = interp(progress, [start, start + perIcon * 0.7], [0, 1])
+                          return (
+                            <div
+                              key={t.name}
+                              className="flex flex-col items-center gap-1.5"
+                              style={{
+                                opacity: reveal,
+                                transform: `translateY(${(1 - reveal) * 14}px) scale(${0.6 + reveal * 0.4})`,
+                                willChange: "opacity, transform",
+                              }}
+                            >
+                              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/95 p-1.5 shadow-sm">
+                                {t.slug ? (
+                                  <img
+                                    src={`https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${t.slug}/${t.variant ?? "default"}.svg`}
+                                    alt={t.name}
+                                    className="h-full w-full object-contain"
+                                  />
+                                ) : (
+                                  <span className="font-serif text-[10px] font-semibold text-background">VAI</span>
+                                )}
+                              </span>
+                              <span className="text-[9px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
+                                {t.name}
+                              </span>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
                   </div>
                 )
               })}

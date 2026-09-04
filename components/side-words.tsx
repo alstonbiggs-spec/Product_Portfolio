@@ -35,7 +35,7 @@ const SECTIONS = [
   },
   {
     tag: "The Solution",
-    title: ["A fully", "customizable", "app."],
+    title: ["A fully", "customizable", "finance app."],
     body: "Dates, amounts, and names are editable on any transaction. Categories and subcategories are fully custom. Rules can be made by card, merchant, or both — charges from a specific card or company route automatically to the right category. Net worth, market exposure, and portfolio diversification are tracked alongside day-to-day spending.",
   },
   {

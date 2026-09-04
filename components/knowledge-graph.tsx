@@ -35,15 +35,15 @@ type Node = {
 // Hub in the middle, memories orbiting it.
 const NODES: Node[] = [
   { id: "hub", label: "Second Brain", x: 50, y: 50, r: 3.4, hub: true },
-  { id: "pricing", label: "Q3 Pricing", x: 50, y: 16, r: 2.4, semantic: true, word: true, accent: "gold" },
+  { id: "pricing", label: "Accounting Class", x: 50, y: 16, r: 2.4, semantic: true, word: true, accent: "gold" },
   { id: "strategy", label: "Strategy", x: 80, y: 27, r: 2.2, semantic: true, accent: "green" },
-  { id: "meetings", label: "Meetings", x: 26, y: 24, r: 2.2, semantic: true },
-  { id: "launch", label: "Launch Notes", x: 78, y: 62, r: 2.3, word: true, accent: "gold" },
+  { id: "meetings", label: "Upcoming Events", x: 26, y: 24, r: 2.2, semantic: true },
+  { id: "launch", label: "Key Concepts", x: 78, y: 62, r: 2.3, word: true, accent: "gold" },
   { id: "papers", label: "Papers", x: 70, y: 84, r: 2.1 },
-  { id: "notes", label: "Daily Notes", x: 18, y: 58, r: 2.1 },
+  { id: "notes", label: "Favorite Books", x: 18, y: 58, r: 2.1 },
   { id: "ideas", label: "Ideas", x: 33, y: 82, r: 2.2, semantic: true },
   { id: "people", label: "People", x: 88, y: 48, r: 2 },
-  { id: "journal", label: "Journal", x: 24, y: 42, r: 1.9 },
+  { id: "journal", label: "Microeconomics Class Concepts", x: 24, y: 42, r: 1.9 },
   { id: "tasks", label: "Tasks", x: 55, y: 82, r: 1.9 },
 ]
 
@@ -257,4 +257,4 @@ export function KnowledgeGraph({ progress }: { progress: number }) {
   )
 }
 
-const QUERY = "How did we price the launch?"
+const QUERY = "Quiz me on concepts for my test on Monday."
