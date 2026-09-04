@@ -31,7 +31,7 @@ const SECTIONS = [
   {
     tag: "The Problem",
     title: ["Budgeting apps", "are too", "rigid."],
-    body: "Rent gets charged on the 31st, not the 1st. Savings transfers get counted as spending. Categories rarely match how money actually gets split.",
+    body: "A billing date could throw off the whole month. Transfers to savings inflate spending totals. Categories are not flexible enough.",
   },
   {
     tag: "The Solution",
