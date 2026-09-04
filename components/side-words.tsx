@@ -15,21 +15,33 @@ import { interp } from "@/lib/interp"
 const LAND = 0.42
 const END = 1.0
 
+const TECH = [
+  { name: "Plaid", slug: "plaid" },
+  { name: "Supabase", slug: "supabase" },
+  { name: "Next.js", slug: "nextdotjs" },
+  { name: "Vercel", slug: "vercel" },
+  { name: "OAuth", slug: "oauth" },
+  { name: "Cloudflare", slug: "cloudflare" },
+  { name: "GitHub", slug: "github" },
+  { name: "VS Code", slug: "visual-studio-code" },
+  { name: "Claude Code", slug: "claude-code" },
+]
+
 const SECTIONS = [
   {
     tag: "The Problem",
-    title: ["Budgeting", "felt like", "a chore."],
-    body: "Most finance apps bury people in spreadsheets and noise — cold numbers with no sense of the story behind them.",
+    title: ["Budgeting apps", "aren't built", "around real life."],
+    body: "Rent gets charged on the 31st, not the 1st. Savings transfers get counted as spending. Categories rarely match how money actually gets split.",
   },
   {
     tag: "The Solution",
-    title: ["A calm,", "glanceable", "money story."],
-    body: "Simpli turns raw transactions into a living picture — plan versus actual, spending pace, and where every dollar went.",
+    title: ["Fully customizable,", "down to the", "transaction."],
+    body: "Dates, amounts, and names are editable on any transaction. Categories and subcategories are fully custom. Rules can be set to auto-sort by card or merchant — charges from a specific card or company route automatically to the right category. Net worth, market exposure, and portfolio diversification are tracked alongside day-to-day spending.",
   },
   {
     tag: "The Tech",
-    title: ["Built for", "sixty frames", "a second."],
-    body: "React Native with Plaid sync and a hand-tuned charting layer — smooth donuts, cumulative lines, and money-flow streams.",
+    title: ["Built on a", "modern", "stack."],
+    body: "Plaid · Supabase · Next.js · Vercel · OAuth · Cloudflare · GitHub · VS Code · Claude Code",
   },
 ]
 
@@ -46,14 +58,19 @@ export function SideWords({ progress }: { progress: number }) {
           const span = b - a
           const y = interp(progress, [a, a + span * 0.3, b - span * 0.3, b], [300, 0, 0, -300])
           const opacity = interp(progress, [a, a + span * 0.22, b - span * 0.26, b], [0, 1, 1, 0])
+          const isTech = s.tag === "The Tech"
+          const popStart = a + span * 0.26
+          const popWindow = span * 0.16
+          const perIcon = popWindow / TECH.length
           return (
             <div
               key={s.tag}
               className="absolute inset-x-0 top-1/2 text-center md:text-left"
               style={{ transform: `translateY(calc(-50% + ${y}px))`, opacity, willChange: "opacity, transform" }}
             >
-              <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">
-                Project 01 — {s.tag}
+              <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">01 — Budgeting</p>
+              <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground/70">
+                {s.tag}
               </p>
               <div className="font-serif text-5xl leading-[0.95] text-foreground md:text-6xl">
                 {s.title.map((line, j) => (
@@ -65,6 +82,37 @@ export function SideWords({ progress }: { progress: number }) {
               <p className="mx-auto mt-6 max-w-sm font-sans text-sm leading-relaxed text-muted-foreground md:mx-0">
                 {s.body}
               </p>
+
+              {isTech && (
+                <div className="mx-auto mt-6 grid max-w-sm grid-cols-3 gap-3 md:mx-0 md:grid-cols-3">
+                  {TECH.map((t, j) => {
+                    const start = popStart + j * perIcon
+                    const reveal = interp(progress, [start, start + perIcon * 0.7], [0, 1])
+                    return (
+                      <div
+                        key={t.slug}
+                        className="flex flex-col items-center gap-1.5"
+                        style={{
+                          opacity: reveal,
+                          transform: `translateY(${(1 - reveal) * 14}px) scale(${0.6 + reveal * 0.4})`,
+                          willChange: "opacity, transform",
+                        }}
+                      >
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/95 p-1.5 shadow-sm">
+                          <img
+                            src={`https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/${t.slug}/default.svg`}
+                            alt={t.name}
+                            className="h-full w-full object-contain"
+                          />
+                        </span>
+                        <span className="text-[9px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
+                          {t.name}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           )
         })}
