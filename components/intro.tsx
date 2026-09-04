@@ -13,8 +13,9 @@ export function Intro({ progress }: { progress: number }) {
       className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center"
       style={{ opacity, transform: `translateY(${y}vh)`, willChange: "opacity, transform" }}
     >
-      <h1 className="font-serif text-[22vw] leading-none text-foreground md:text-[15rem]">
-        Projects
+      <h1 className="font-serif leading-none text-foreground">
+        <span className="text-[22vw] md:text-[15rem]">Product</span>{" "}
+        <span className="text-[11vw] md:text-[7.5rem]">Portfolio</span>
       </h1>
       <div
         className="mt-6 flex flex-col items-center gap-2"
