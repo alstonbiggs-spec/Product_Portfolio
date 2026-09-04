@@ -30,17 +30,17 @@ const TECH = [
 const SECTIONS = [
   {
     tag: "The Problem",
-    title: ["Budgeting apps", "aren't built", "around real life."],
+    title: ["Budgeting apps", "are too", "rigid."],
     body: "Rent gets charged on the 31st, not the 1st. Savings transfers get counted as spending. Categories rarely match how money actually gets split.",
   },
   {
     tag: "The Solution",
-    title: ["Fully customizable,", "down to the", "transaction."],
-    body: "Dates, amounts, and names are editable on any transaction. Categories and subcategories are fully custom. Rules can be set to auto-sort by card or merchant — charges from a specific card or company route automatically to the right category. Net worth, market exposure, and portfolio diversification are tracked alongside day-to-day spending.",
+    title: ["A fully", "customizable", "app."],
+    body: "Dates, amounts, and names are editable on any transaction. Categories and subcategories are fully custom. Rules can be made by card, merchant, or both — charges from a specific card or company route automatically to the right category. Net worth, market exposure, and portfolio diversification are tracked alongside day-to-day spending.",
   },
   {
     tag: "The Tech",
-    title: ["Built on a", "modern", "stack."],
+    title: ["Built on:"],
     body: "Plaid · Supabase · Next.js · Vercel · OAuth · Cloudflare · GitHub · VS Code · Claude Code",
   },
 ]
@@ -68,7 +68,7 @@ export function SideWords({ progress }: { progress: number }) {
               className="absolute inset-x-0 top-1/2 text-center md:text-left"
               style={{ transform: `translateY(calc(-50% + ${y}px))`, opacity, willChange: "opacity, transform" }}
             >
-              <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">01 — Budgeting</p>
+              <p className="mb-4 font-sans text-xs uppercase tracking-[0.35em] text-primary/80">Product 1</p>
               <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground/70">
                 {s.tag}
               </p>
